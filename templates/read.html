@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static',  filename='bootstrap.css') }}">
+
+</head>
+<body class="bg-primary-subtle">
+    <div class="container">
+        <div class="mt-5">
+            <h1>Lista de Usuários Cadastrados</h1>
+        </div>
+
+        <div>
+            <ul>
+                {% for user in users %}
+                <li>
+                    {{ user[1] }} ({{ user[2] }})
+
+                    
+                        <a href="{{ url_for('edit_user', id=user[0]) }}"> Editar </a>
+                    
+                        <form action="{{ url_for('delete_user', id=user[0]) }}" method="post" style="display: inline;">
+                            <button class="btn btn-outline-danger" type="submit">Deletar</button>
+                        </form>
+                  
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            <a href="{{ url_for('add_user') }}">Adicionar Usuario</a>
+        </div>
+        
+    </div>
+</body>
+</html>
